@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function Search() {
   const history = useHistory();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const sortQuery = queryParams.get("sort");
+  const orderQuery = queryParams.get("order");
+  const perNumberQuery = queryParams.get("per_page");
 
   const [sort, setSort] = useState("stars");
   const [order, setOrder] = useState("desc");
@@ -30,6 +37,7 @@ function Search() {
   return (
     <div>
       <select
+        value={sortQuery}
         onChange={(e) => {
           sortChangeHandler(e);
         }}
@@ -38,6 +46,7 @@ function Search() {
         <option value="forks">forks 많이 받은 순</option>
       </select>
       <select
+        value={orderQuery}
         onChange={(e) => {
           orderChangeHandler(e);
         }}
@@ -46,6 +55,7 @@ function Search() {
         <option value="asc">오름차순</option>
       </select>
       <select
+        value={perNumberQuery}
         onChange={(e) => {
           numberChangeHandler(e);
         }}

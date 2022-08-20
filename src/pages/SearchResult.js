@@ -1,4 +1,4 @@
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function SearchResult(props) {
@@ -34,7 +34,13 @@ function SearchResult(props) {
       {infoResult && (
         <ol>
           {infoResult.map((info) => (
-            <li>{info.id}</li>
+            <li key={info.id}>
+              <p>{info.name}</p>
+              <p>{info.description}</p>
+              <Link to={{ pathname: `${info.html_url}` }} target="_blank">
+                {info.html_url}
+              </Link>
+            </li>
           ))}
         </ol>
       )}
