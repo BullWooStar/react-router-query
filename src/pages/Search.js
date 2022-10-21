@@ -11,9 +11,9 @@ function Search() {
   const orderQuery = queryParams.get("order");
   const perNumberQuery = queryParams.get("per_page");
 
-  const [sort, setSort] = useState("stars");
-  const [order, setOrder] = useState("desc");
-  const [perNumber, setPerNumber] = useState("10");
+  const [sort, setSort] = useState(sortQuery ?? "stars");
+  const [order, setOrder] = useState(orderQuery ?? "desc");
+  const [perNumber, setPerNumber] = useState(perNumberQuery ?? "10");
 
   const sortChangeHandler = function (e) {
     setSort(e.target.value);
@@ -32,10 +32,11 @@ function Search() {
     history.push(
       `/search/repositories?q=tetris&sort=${sort}&order=${order}&per_page=${perNumber}`
     );
-  }, [sort, order, perNumber]); //노란줄 why?
+  }, [sort, order, perNumber]);
 
   return (
     <div>
+      <label style={{ display: "none" }}>검색</label>
       <select
         value={sortQuery}
         onChange={(e) => {
