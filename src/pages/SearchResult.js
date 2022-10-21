@@ -37,9 +37,9 @@ function SearchResult(props) {
             <li key={info.id}>
               <p>{info.name}</p>
               <p>{info.description}</p>
-              <Link to={{ pathname: `${info.html_url}` }} target="_blank">
+              <a href={info.html_url} target="_blank">
                 {info.html_url}
-              </Link>
+              </a>
             </li>
           ))}
         </ol>
